@@ -1,3 +1,5 @@
+from datetime import timezone
+
 from django.http import HttpResponse
 
 from mysql.models import *
@@ -11,6 +13,15 @@ def insertUser(request):
     User2.save()
     User3.save()
 
-    article = Article(art_name='iphone12', description='the latest version of iphone', image='')
+    article = Article(art_name='iphone12', description='the latest version of iphone', image='./res/img/airpodspro.jpg', stock=5, type='telephone', rate=10)
+    article1 = Article(art_name='iphone11',description='this is iphone11', image='./res/img/iphone11.jpg',stock=5, type='telephone', rate=8)
+    article.save()
+    article1.save()
+
+    order = Order()
+    order.time = timezone.utc
+    order.id_user = user
+    order.id_article = article
+    order.save()
     return HttpResponse("<p>add success！</p>")
 

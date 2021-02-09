@@ -21,6 +21,6 @@ class Article(models.Model):
 class Order(models.Model):
     id_user = models.ForeignKey("User", on_delete=models.CASCADE)
     id_article = models.ForeignKey("Article", on_delete=models.CASCADE)
-    time = models.DateTimeField()
+    time = models.DateTimeField(auto_now_add=True)
     class Meta:
         db_table = 'order'
