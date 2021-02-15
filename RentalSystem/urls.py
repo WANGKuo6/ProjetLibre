@@ -15,9 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-
+from mysql import views
 from . import Insert
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('insert/', Insert.insertUser)
+    path('insert/', Insert.insertUser),
+    path('login/', views.login),
+    path('index/', views.Accueil),
+    path('', views.index)
 ]
+
