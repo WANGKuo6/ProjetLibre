@@ -55,7 +55,7 @@ ROOT_URLCONF = 'RentalSystem.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.join(BASE_DIR, 'templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -81,7 +81,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'RentalSystem',
         'USER':'root',
-        'PASSWORD':'Wangkuo521',
+        'PASSWORD':'',
         'HOST':'localhost',
         'PORT':'3306',
     }
