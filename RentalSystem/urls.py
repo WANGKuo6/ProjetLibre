@@ -22,6 +22,7 @@ urlpatterns = [
     path('insert/', Insert.insertUser),
     path('login/', views.login),
     path('index/', views.Accueil),
+    path('logout/', views.logout),
     path('', views.index)
 ]
 
