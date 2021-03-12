@@ -18,13 +18,13 @@
             <a class="nav-link" href="#">Rentals</a>
           </li>
         </ul>
-          {% if not user_login %}
+        {% if not request.session.is_login %}
           <form class="d-flex" action="/login/" method="get">>
           <button class="btn btn-outline-success" type="submit">Login</button>
         </form>
           {% else %}
              <form class="d-flex" action="/logout/" method="get">>
-          <button class="btn btn-outline-success" type="submit">Logout</button>
+                 <button class="btn btn-outline-success" type="submit">{{ request.session.username }}</button>
         </form>
           {% endif %}
       </div>
