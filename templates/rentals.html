@@ -1,0 +1,37 @@
+{% include 'components/header.html' %}
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    {% if request.session.is_login %}
+        <div class="panel panel-default">
+            <div class="panel-body text-center">
+                <div class="panel-body">
+                    <h4>Hello, {{ request.session.username }} </h4>
+                </div>
+            </div>
+            {% for order in orders %}
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-body text-center">
+                        <h5><strong>{{ order.id }}</strong></h5>
+                        <h5>{{ order.id_user  }}</h5>
+                        <h5>{{ order.id_article }}</h5>
+                        <h5>{{ order.time  }}</h5>
+                        <form method="post">
+                            <button type="submit" class="btn btn-danger">Cancel</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <div class="panel panel-default" style="background-color: #ff333b">
+            <div class="panel-body text-center">
+            <h3 class="lead" style="color: #ffccc6">You are logged out!</h3>
+            </div>
+    {% endif %}
+    </div>
+{% include 'components/footer.html' %}

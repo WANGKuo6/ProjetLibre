@@ -12,14 +12,14 @@
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav me-auto mb-2 mb-md-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="">Home</a>
+            <a class="nav-link active" aria-current="page" href="/index">Home</a>
           </li>te
           <li class="nav-item">
-            <a class="nav-link" href="#">Rentals</a>
+            <a class="nav-link" href="/rentals">Rentals</a>
           </li>
         </ul>
         {% if not request.session.is_login %}
-          <form class="d-flex" action="/login/" method="get">>
+          <form class="d-flex" action="/login/" method="get">
           <button class="btn btn-outline-success" type="submit">Login</button>
         </form>
           {% else %}

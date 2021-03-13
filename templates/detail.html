@@ -1,0 +1,34 @@
+{% include 'components/header.html' %}
+
+<div class="panel panel-default">
+        <div class="panel-body text-center">
+            <br>
+            <br>
+            <img alt="car" src={{ article.image }} class="img-responsive"/>
+            <br>
+
+            <h5>{{article.art_name}}</h5>
+            <p class="lead text-left" style="margin: 10px;">type :   {{ article.type }}</p>
+
+            <p class="lead text-left" style="margin: 10px;">{{ article.description }}</p>
+
+            <p class="lead text-left" style="margin: 10px;">Per week :  € {{ article.rate }}</p>
+
+
+            <h5>Stock : {{ article.stock }}</h5>
+            {% if article.stock == 0 %}
+                <button type="button" class="btn btn-sm btn-outline-secondary">Disable</button>
+            {% else %}
+                {% if request.session.is_login %}
+                    <button type="button" class="btn btn-sm btn-outline-secondary">Rent</button>
+                {% else %}
+                <button type="button" class="btn btn-sm btn-outline-secondary">Sign In/Register to rent cars!</button>
+                <!--<h6>Sign In/Register to rent cars!</h6> -->
+                {% endif %}
+            {% endif %}
+
+        </div>
+    </div>
+
+
+{% include 'components/footer.html' %}

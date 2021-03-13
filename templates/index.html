@@ -1,115 +1,32 @@
 {% include 'components/header.html' %}
-<div>
-audentification success!
-</div>
 
 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+  {% for article in articles %}
   <div class="col">
           <div class="card shadow-sm">
             <svg class="bd-placeholder-img card-img-top" width="100%" height="150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
 <!--              <rect width="100%" height="100%"  src="https://i.loli.net/2021/02/22/DmklqyzfJLv7B5w.jpg"></rect>-->
             </svg>
-<img src="https://i.loli.net/2021/02/22/kgHM5lp8dzA4Q2f.jpg"></img>
+<img src={{ article.image }}></img>
             <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <p class="card-text">{{ article.art_name }}</p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                <form class="d-flex" action = "{% url 'urlName' article.art_name %}" method="post">
+                    <button class="btn btn-sm btn-outline-secondary" type="submit"> Detail </button>
+                </form>
+                <form class="d-flex" action = "{% url 'urlName' article.art_name %}" method="post">
+                    {% if request.session.is_login  %}
+                    <button type="button" class="btn btn-sm btn-outline-secondary">Rent</button>
+                    {% endif %}
+                </form>
                 </div>
-                <small class="text-muted">9 mins</small>
+                <small class="text-muted">stock: {{ article.stock }}</small>
               </div>
             </div>
           </div>
         </div>
-  <div class="col">
-          <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-<!--              <rect width="100%" height="100%"  src="https://i.loli.net/2021/02/22/DmklqyzfJLv7B5w.jpg"></rect>-->
-            </svg>
-<img src="https://i.loli.net/2021/02/22/d7v4mTVZArJql1h.jpg"></img>
-            <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                </div>
-                <small class="text-muted">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-  <div class="col">
-          <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-<!--              <rect width="100%" height="100%"  src="https://i.loli.net/2021/02/22/DmklqyzfJLv7B5w.jpg"></rect>-->
-            </svg>
-<img src="https://i.loli.net/2021/02/22/TwL8IcHYotJ1K2j.jpg"></img>
-            <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                </div>
-                <small class="text-muted">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-  <div class="col">
-          <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-            </svg>
-<img src="https://i.loli.net/2021/02/22/EMiAbXe4ZfQtgmD.jpg"></img>
-            <div class="card-body">
-              <p class="card-text">this is ipadpro.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                </div>
-                <small class="text-muted">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-  <div class="col">
-          <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-            </svg>
-<img src="https://i.loli.net/2021/02/22/8h6rGLe9Nup2ysi.jpg"></img>
-            <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                </div>
-                <small class="text-muted">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-<!--  <div class="col">-->
-<!--          <div class="card shadow-sm">-->
-<!--            <svg class="bd-placeholder-img card-img-top" width="100%" height="150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">-->
-<!--&lt;!&ndash;              <rect width="100%" height="100%"  src="https://i.loli.net/2021/02/22/DmklqyzfJLv7B5w.jpg"></rect>&ndash;&gt;-->
-<!--            </svg>-->
-<!--<img src="https://i.loli.net/2021/02/22/DmklqyzfJLv7B5w.jpg"></img>-->
-<!--            <div class="card-body">-->
-<!--              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>-->
-<!--              <div class="d-flex justify-content-between align-items-center">-->
-<!--                <div class="btn-group">-->
-<!--                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>-->
-<!--                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>-->
-<!--                </div>-->
-<!--                <small class="text-muted">9 mins</small>-->
-<!--              </div>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
+    {% endfor %}
 
 </div>
 

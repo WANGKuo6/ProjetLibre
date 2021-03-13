@@ -23,6 +23,8 @@ urlpatterns = [
     path('login/', views.login),
     path('index/', views.index),
     path('logout/', views.logout),
+    path('detail/<Name>/', views.article, name='urlName'),
+    path('rentals', views.rentals),
     path('', views.index)
 ]
 
