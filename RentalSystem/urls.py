@@ -25,6 +25,10 @@ urlpatterns = [
     path('logout/', views.logout),
     path('detail/<Name>/', views.article, name='urlName'),
     path('rentals', views.rentals),
+    path('register/', views.switchFunction),
+    path('addUser/', views.addUser),
+    path('changePass/', views.changePass),
+    path('forgetPassword/', views.switchFunction),
     path('', views.index)
 ]
 

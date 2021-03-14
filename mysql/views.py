@@ -30,6 +30,7 @@ def logout(request):
 
 def index(request):
     print('666')
+    data = [1, 2]
     is_login = request.session.get('is_login', False)
     print('is_login::::::')
     print(is_login)
@@ -59,3 +60,31 @@ def rentals(request):
     else:
         return render(request, 'rentals.html')
 
+def register(request):
+    return render(request, 'Register.html')
+
+def addUser(request):
+    if request.method == "POST":
+        username = request.POST.get('username')
+        password = request.POST.get('pass')
+        email = request.POST.get('email')
+        address = request.POST.get('address')
+        user = User(user_name=username, mail=email, password=password,adress=address)
+        user.save()
+    return render(request, 'login.html')
+
+def changePass(request):
+    if request.method == "POST":
+        username = request.POST.get('username')
+        newPassword = request.POST.get('pass')
+        user = User.objects.get(user_name = username)
+        user.password = newPassword
+        user.save()
+    return render(request, 'login.html')
+
+def switchFunction(request):
+    if request.path == '/addUser/':
+        return render(request, 'Register.html')
+    if request.path == '/forgetPassword/':
+        return  render(request, 'ForgetPassword.html')
+    return render(request, 'Register.html')
