@@ -29,6 +29,8 @@ urlpatterns = [
     path('addUser/', views.addUser),
     path('changePass/', views.changePass),
     path('forgetPassword/', views.switchFunction),
+    path('rent/<Name>/', views.rent, name='Name'),
+    path('rent_art/<Name>/', views.rent_art, name='art'),
     path('', views.index)
 ]
 

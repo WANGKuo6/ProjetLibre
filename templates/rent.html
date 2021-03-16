@@ -1,0 +1,43 @@
+{% include 'components/header.html' %}
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="panel panel-default">
+        <div class="panel-body text-center">
+                <div class="panel-body">
+                    <h4>Hello, {{ request.session.username }} </h4>
+                </div>
+            </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-body text-center">
+            <form class="form-horizontal" method="post" action = "{% url 'art' article.art_name %}">
+                <fieldset>
+                    <legend>Rent {{article.art_name}}</legend>
+                    <img alt="car" src={{ article.image }} class="img-responsive" style="margin-bottom: 20px;" />
+                    <h5>Stock : {{ article.stock }} </h5>
+                    <p class="lead text-left" style="margin: 10px;">Per week :  € {{ article.rate }}</p>
+                    nb weeks:  <input type="number" min="1" class='form' name='nb' id="val" autofocus="autofocus" value='value' placeholder='Value'>
+                    <br>
+                    <br>
+                    <div class="form-group">
+                        <div class="col-lg-offset-2">
+                            <button type="reset" class="btn btn-sm btn-outline-secondary">Cancel</button>
+                            <button type="submit" class="btn btn-sm btn-outline-secondary">Rent</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+
+
+    {% if messages %}
+        {% for msg in messages %}
+            <div id="myAlert" class="alert alert-success" >
+                <div class="text-center">{{ msg.message }}   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<button class="close" data-dismiss="alert">&times;</button></div></div>
+        {% endfor %}
+    {% endif %}
+{% include 'components/footer.html' %}

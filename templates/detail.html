@@ -19,11 +19,12 @@
             {% if article.stock == 0 %}
                 <button type="button" class="btn btn-sm btn-outline-secondary">Disable</button>
             {% else %}
-                {% if request.session.is_login %}
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Rent</button>
-                {% else %}
+                <form class="form list-group-horizontal" action = "{% url 'Name' article.art_name %}" method="post">
+                    {% if request.session.is_login  %}
+                    <button type="submit" class="btn btn-sm btn-outline-secondary">Rent</button>
+                    {% else %}
+                </form>
                 <button type="button" class="btn btn-sm btn-outline-secondary">Sign In/Register to rent cars!</button>
-                <!--<h6>Sign In/Register to rent cars!</h6> -->
                 {% endif %}
             {% endif %}
 

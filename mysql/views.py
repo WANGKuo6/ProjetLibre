@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.http import response
 from django.shortcuts import render, redirect
 from mysql.models import User
@@ -60,8 +61,10 @@ def rentals(request):
     else:
         return render(request, 'rentals.html')
 
+
 def register(request):
     return render(request, 'Register.html')
+
 
 def addUser(request):
     if request.method == "POST":
@@ -73,6 +76,7 @@ def addUser(request):
         user.save()
     return render(request, 'login.html')
 
+
 def changePass(request):
     if request.method == "POST":
         username = request.POST.get('username')
@@ -82,9 +86,30 @@ def changePass(request):
         user.save()
     return render(request, 'login.html')
 
+
 def switchFunction(request):
     if request.path == '/addUser/':
         return render(request, 'Register.html')
     if request.path == '/forgetPassword/':
-        return  render(request, 'ForgetPassword.html')
+        return render(request, 'ForgetPassword.html')
     return render(request, 'Register.html')
+
+
+def rent(request, Name):
+    print(Name)
+    art = Article.objects.get(art_name=Name)
+    return render(request, 'rent.html', {'article': art})
+
+
+def rent_art(request,Name):
+    print(Name)
+    art = Article.objects.get(art_name=Name)
+    nb_week = request.POST.get('nb')
+    user_name = request.session.get('username')
+    res_user = User.objects.get(user_name=user_name)
+    order = Order(id_user=res_user,id_article=art)
+    order.save()
+    art.stock = art.stock - 1
+    art.save()
+    messages.success(request, "Rent success!")
+    return render(request, 'rent.html', {'article': art})

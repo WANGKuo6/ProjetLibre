@@ -15,11 +15,18 @@
                 <form class="d-flex" action = "{% url 'urlName' article.art_name %}" method="post">
                     <button class="btn btn-sm btn-outline-secondary" type="submit"> Detail </button>
                 </form>
-                <form class="d-flex" action = "{% url 'urlName' article.art_name %}" method="post">
-                    {% if request.session.is_login  %}
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Rent</button>
-                    {% endif %}
-                </form>
+                {% if article.stock == 0 %}
+                    <form class="form list-group-horizontal" method="post">
+                    <button type="button" class="btn btn-sm btn-outline-secondary">Disable</button>
+                    </form>
+                {% else %}
+                    <form class="form list-group-horizontal" action = "{% url 'Name' article.art_name %}" method="post">
+                        {% if request.session.is_login  %}
+                            <button type="submit" class="btn btn-sm btn-outline-secondary">Rent</button>
+                        {% endif %}
+                    </form>
+                {% endif %}
+
                 </div>
                 <small class="text-muted">stock: {{ article.stock }}</small>
               </div>

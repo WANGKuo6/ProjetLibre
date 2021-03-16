@@ -16,8 +16,8 @@
                 <div class="panel panel-default">
                     <div class="panel-body text-center">
                         <h5><strong>{{ order.id }}</strong></h5>
-                        <h5>{{ order.id_user  }}</h5>
-                        <h5>{{ order.id_article }}</h5>
+                        <h5>{{ order.id_article.art_name }}</h5>
+                        <h5>{{ order.id_user.adress }}</h5>
                         <h5>{{ order.time  }}</h5>
                         <form method="post">
                             <button type="submit" class="btn btn-danger">Cancel</button>
