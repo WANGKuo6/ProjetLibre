@@ -3,7 +3,7 @@ from django.db import models
 class User(models.Model):
     user_name = models.CharField(max_length=32)
     mail = models.EmailField()
-    password = models.CharField(max_length = 32)
+    password = models.CharField(max_length=128)
     adress = models.TextField()
     class Meta:
         db_table = 'user'
@@ -11,7 +11,7 @@ class User(models.Model):
 class Article(models.Model):
     art_name = models.CharField(max_length=32)
     description = models.TextField()
-    image = models.CharField(max_length=32)
+    image = models.CharField(max_length=256)
     stock = models.IntegerField()
     type = models.CharField(max_length=32)
     rate = models.IntegerField()

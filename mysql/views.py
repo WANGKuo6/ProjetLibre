@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from mysql.models import User
 from mysql.models import Article
 from mysql.models import Order
-
+import hashlib
 
 # Create your views here.
 def login(request):
@@ -69,7 +69,7 @@ def register(request):
 def addUser(request):
     if request.method == "POST":
         username = request.POST.get('username')
-        password = request.POST.get('pass')
+        password = hashlib.sha256(request.POST.get('pass').encode('utf-8')).hexdigest()
         email = request.POST.get('email')
         address = request.POST.get('address')
         user = User(user_name=username, mail=email, password=password,adress=address)
