@@ -31,6 +31,8 @@ urlpatterns = [
     path('forgetPassword/', views.switchFunction),
     path('rent/<Name>/', views.rent, name='Name'),
     path('rent_art/<Name>/', views.rent_art, name='art'),
+    path('profil/<user_name>',views.show_profil, name='user_name'),
+    path('change/<user_name>', views.changePage, name='user_name'),
     path('', views.index)
 ]
 

@@ -1,5 +1,4 @@
 from django.contrib import messages
-from django.http import response
 from django.shortcuts import render, redirect
 from mysql.models import User
 from mysql.models import Article
@@ -10,7 +9,7 @@ import hashlib
 def login(request):
     if request.method == "POST":
         username = request.POST.get('username')
-        password = request.POST.get('pass')
+        password = hashlib.sha256(request.POST.get('pass').encode('utf-8')).hexdigest()
         res_user = User.objects.get(user_name=username)
         if password == res_user.password:
             request.session['is_login'] = 'True'
@@ -79,19 +78,23 @@ def addUser(request):
 
 def changePass(request):
     if request.method == "POST":
-        username = request.POST.get('username')
-        newPassword = request.POST.get('pass')
-        user = User.objects.get(user_name = username)
+        try:
+            username = request.POST.get('username')
+            user = User.objects.get(user_name=str(username))
+        except User.DoesNotExist:
+            return render(request, 'ForgetPassword.html', {'messages': 0})
+
+        newPassword = hashlib.sha256(request.POST.get('pass').encode('utf-8')).hexdigest()
+
         user.password = newPassword
         user.save()
     return render(request, 'login.html')
-
 
 def switchFunction(request):
     if request.path == '/addUser/':
         return render(request, 'Register.html')
     if request.path == '/forgetPassword/':
-        return render(request, 'ForgetPassword.html')
+        return render(request, 'ForgetPassword.html', {'messages': 1})
     return render(request, 'Register.html')
 
 
@@ -113,3 +116,13 @@ def rent_art(request,Name):
     art.save()
     messages.success(request, "Rent success!")
     return render(request, 'rent.html', {'article': art})
+
+def show_profil(request, user_name):
+    user = User.objects.get(user_name = user_name)
+    orders = Order.objects.filter(id_user = user.pk)
+    return render(request, 'profil.html', {'user': user, 'orders': orders, 'page': 0})
+
+def changePage(request,user_name):
+    user = User.objects.get(user_name = user_name)
+    orders = Order.objects.filter(id_user = user.pk)
+    return render(request, 'profil.html', {'user': user, 'orders': orders, 'page': 1})
