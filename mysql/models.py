@@ -1,3 +1,7 @@
+# -*- coding: utf-8 -*-
+# @Time : 27/03/2021 10:15
+# @Author : WANGKuo, XURui
+# @File : models.py
 from django.db import models
 
 class User(models.Model):
