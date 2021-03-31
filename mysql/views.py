@@ -21,7 +21,6 @@ def login(request):
         password = hashlib.sha256(request.POST.get('pass').encode('utf-8')).hexdigest()
         res_user = User.objects.filter(user_name=username)
         if not res_user.exists():
-            messages.success(request, "Username does not exist.")
             return render(request, 'login.html');
         if password == res_user[0].password:
             request.session['is_login'] = 'True'
@@ -48,16 +47,11 @@ def index(request):
     @param request:
     @return: Return to different pages according to the user's different status.
     """
-    print('666')
     data = [1, 2]
     is_login = request.session.get('is_login', False)
-    print('is_login::::::')
-    print(is_login)
     articles = Article.objects.all()
     if is_login:
         username = request.session['username']
-        print('username::::::')
-        print(username)
         return render(request, 'index.html',{'articles': articles})
     else:
         return render(request, 'index.html',{'articles': articles})
@@ -70,7 +64,6 @@ def article(request, Name):
     @param Name: article's name
     @return: an article object to the 'detail.html'.
     """
-    print(Name)
     art = Article.objects.get(art_name=Name)
     return render(request, 'detail.html',{'article': art})
 
