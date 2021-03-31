@@ -1,5 +1,5 @@
 {% include 'components/header.html' %}
-
+<!-- The main page.-->
 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
   {% for article in articles %}
   <div class="col">
@@ -7,6 +7,7 @@
             <svg class="bd-placeholder-img card-img-top" width="100%" height="150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
 <!--              <rect width="100%" height="100%"  src="https://i.loli.net/2021/02/22/DmklqyzfJLv7B5w.jpg"></rect>-->
             </svg>
+            <!-- Show all the images.-->
 <img src={{ article.image }}></img>
             <div class="card-body">
               <p class="card-text">{{ article.art_name }}</p>

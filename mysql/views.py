@@ -19,15 +19,15 @@ def login(request):
     if request.method == "POST":
         username = request.POST.get('username')
         password = hashlib.sha256(request.POST.get('pass').encode('utf-8')).hexdigest()
-        res_user = User.objects.get(user_name=username)
-        if password == res_user.password:
+        res_user = User.objects.filter(user_name=username)
+        if not res_user.exists():
+            messages.success(request, "Username does not exist.")
+            return render(request, 'login.html');
+        if password == res_user[0].password:
             request.session['is_login'] = 'True'
             request.session['username'] = username
             return redirect('/index/')
-        else:
-            return render(request, 'login.html')
     return render(request, 'login.html')
-
 
 def logout(request):
     """
@@ -167,7 +167,6 @@ def rent_art(request,Name):
     @param Name: the articles'name
     @return: return to rent.html
     """
-    print(Name)
     art = Article.objects.get(art_name=Name)
     nb_week = request.POST.get('nb')
     user_name = request.session.get('username')

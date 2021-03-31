@@ -76,14 +76,12 @@ WSGI_APPLICATION = 'RentalSystem.wsgi.application'
 
 DATABASES = {
     'default': {
-#        'ENGINE': 'django.db.backends.sqlite3',
-#        'NAME': BASE_DIR / 'db.sqlite3',
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'RentalSystem',
-        'USER':'root',
-        'PASSWORD':'Wangkuo521',
-        'HOST':'localhost',
-        'PORT':'3306',
+        'USER': 'root',
+        'PASSWORD': 'Wangkuo521',
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
 
